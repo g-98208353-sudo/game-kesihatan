@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misi Wira Sihat | Kelab Doktor Muda</title>
+<style>
+:root{
+  --navy:#183153;--blue:#3185fc;--teal:#20c9b5;--yellow:#ffd45c;
+  --pink:#ff7da8;--purple:#8b73f7;--paper:#ffffff;--muted:#61728a;
+  --green:#20a875;--red:#e65d68;--shadow:0 12px 0 rgba(27,58,91,.08),0 20px 35px rgba(27,58,91,.12);
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--navy);
+ background:radial-gradient(circle at 12% 10%,#fff7cb 0 8%,transparent 9%),radial-gradient(circle at 90% 18%,#d6f8f2 0 10%,transparent 11%),linear-gradient(145deg,#edf8ff,#f4f0ff 55%,#fff5ed)}
+button,input{font:inherit}
+button{cursor:pointer}
+.app{max-width:1100px;margin:auto;padding:20px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.3px}
+.brand-icon{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:linear-gradient(145deg,#fff,#dffbf6);box-shadow:0 5px 0 #b8e7e0;font-size:27px}
+.pill{background:#fff;border:2px solid #e3ebf7;border-radius:999px;padding:9px 14px;font-size:13px;font-weight:800}
+.panel{background:rgba(255,255,255,.94);border:2px solid rgba(255,255,255,.9);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:20px;padding:clamp(22px,5vw,52px);position:relative}
+.eyebrow{display:inline-block;background:#e3fbf5;color:#087e70;padding:8px 13px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:1px}
+h1{font-size:clamp(35px,6vw,64px);line-height:.99;letter-spacing:-2px;margin:18px 0 14px}
+h1 span{color:var(--blue);text-shadow:2px 3px 0 #c7e0ff}
+.lead{font-size:17px;line-height:1.6;color:var(--muted);max-width:500px}
+.hero-art{min-height:280px;display:grid;place-items:center;position:relative}
+.orbit{width:min(100%,340px);aspect-ratio:1;border-radius:50%;background:linear-gradient(145deg,#bdf5e9,#d6e8ff 62%,#e7ddff);box-shadow:inset -14px -17px 0 rgba(73,108,178,.10),0 18px 0 #cddbf2;display:grid;place-items:center;position:relative}
+.doctor{font-size:clamp(110px,18vw,175px);filter:drop-shadow(0 14px 2px rgba(35,70,112,.14));transform:translateY(-7px)}
+.float{position:absolute;border:3px solid white;border-radius:18px;padding:10px 13px;background:white;box-shadow:0 8px 0 rgba(29,69,110,.09);font-weight:900}
+.f1{top:12%;left:-3%;transform:rotate(-8deg)}.f2{right:-5%;top:28%;transform:rotate(7deg)}.f3{bottom:8%;left:10%;transform:rotate(5deg)}
+.name-row{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 16px}
+.name-row input{flex:1;min-width:180px;border:2px solid #dce7f5;border-radius:15px;padding:14px 16px;outline:none;background:#fbfdff}
+.name-row input:focus{border-color:var(--blue)}
+.btn{border:0;border-radius:15px;padding:14px 20px;font-weight:900;box-shadow:0 5px 0 rgba(22,58,95,.16);transition:transform .12s,box-shadow .12s}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(22,58,95,.16)}
+.primary{background:var(--blue);color:white}.secondary{background:#edf3fb;color:var(--navy)}.yellow{background:var(--yellow);color:#654a00}
+.small-note{font-size:12px;color:var(--muted);line-height:1.5}
+.how{margin-top:20px;padding:22px 26px}
+.section-title{font-size:20px;margin:0 0 14px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.step{padding:15px;border-radius:18px;background:#f5f8ff;display:flex;gap:11px;align-items:flex-start}
+.step b{display:block;margin-bottom:5px}.step-icon{font-size:27px}
+.hidden{display:none!important}
+.game-panel{padding:clamp(18px,4vw,34px)}
+.game-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.mission-label{font-size:12px;font-weight:900;letter-spacing:1px;color:#58708c;text-transform:uppercase}
+.progress-wrap{height:12px;border-radius:99px;background:#e8eff8;overflow:hidden;margin:17px 0 24px}
+.progress{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--blue));border-radius:99px;transition:width .3s}
+.station-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.station{border-radius:999px;background:#f0f4fb;color:#78879b;padding:8px 11px;font-size:12px;font-weight:900}
+.station.done{background:#d9f8ec;color:#087d59}.station.active{background:#dfeaff;color:#1e68cb;box-shadow:inset 0 0 0 2px #9dc5ff}
+.question-layout{display:grid;grid-template-columns:170px 1fr;gap:25px;align-items:center}
+.mascot-card{background:linear-gradient(145deg,#e0fbf4,#e4edff);border-radius:24px;min-height:205px;display:grid;place-items:center;position:relative;overflow:hidden}
+.mascot-card:before,.mascot-card:after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.45);width:100px;height:100px;top:-25px;right:-20px}
+.mascot-card:after{width:60px;height:60px;top:auto;right:auto;bottom:12px;left:-15px}
+.mascot-emoji{font-size:100px;z-index:1;filter:drop-shadow(0 8px 1px rgba(24,49,83,.12))}
+.question-count{font-size:12px;font-weight:900;color:#6d7d91;margin-bottom:8px}
+.question{font-size:clamp(23px,3.4vw,34px);line-height:1.2;margin:0 0 19px;letter-spacing:-.6px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.answer{display:flex;align-items:center;gap:12px;text-align:left;background:white;border:2px solid #dfe8f4;border-radius:16px;padding:14px;min-height:68px;color:var(--navy);font-weight:800;box-shadow:0 4px 0 #e7edf5;transition:.15s}
+.answer:hover:not(:disabled){border-color:#80b7ff;transform:translateY(-2px)}
+.letter{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#eef4ff;color:#3978c9;font-weight:900}
+.answer.correct{background:#e2fbef;border-color:#5bd5a1;box-shadow:0 4px 0 #bdebd5}
+.answer.wrong{background:#fff0f0;border-color:#ff9fa7;box-shadow:0 4px 0 #ffd7da}
+.feedback{margin-top:17px;padding:15px 17px;border-radius:16px;line-height:1.5;font-weight:700}
+.feedback.good{background:#e3faef;color:#08744e}.feedback.bad{background:#fff1df;color:#8a4b05}
+.game-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.score-chip{background:#fff5cf;border-radius:13px;padding:10px 14px;font-weight:900}
+.result{text-align:center;padding:clamp(25px,5vw,55px)}
+.trophy{font-size:100px;filter:drop-shadow(0 8px 0 #f4e3a6)}
+.result h2{font-size:clamp(32px,5vw,48px);margin:10px 0}
+.result-sub{color:var(--muted);font-size:17px;line-height:1.6}
+.score-big{font-size:clamp(52px,10vw,82px);font-weight:1000;color:var(--blue);letter-spacing:-3px;margin:14px 0}
+.stars{font-size:32px;letter-spacing:5px;margin:12px 0}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:600px;margin:25px auto}
+.result-stat{padding:17px;background:#f4f7fc;border-radius:18px}
+.result-stat strong{display:block;font-size:25px;margin-bottom:4px}
+.result-stat span{font-size:12px;color:var(--muted);font-weight:800}
+.certificate{max-width:650px;margin:22px auto 0;border:3px dashed #bed5f4;border-radius:20px;padding:20px;background:#fbfdff}
+.footer{text-align:center;color:#6b7b91;font-size:12px;padding:18px 8px}
+@media(max-width:720px){
+ .hero{grid-template-columns:1fr;text-align:center}.hero-art{min-height:240px;grid-row:1}.orbit{width:240px}.doctor{font-size:125px}.hero .lead{margin-inline:auto}
+ .name-row{max-width:470px;margin-inline:auto}.steps{grid-template-columns:1fr}.question-layout{grid-template-columns:1fr;gap:15px}.mascot-card{min-height:115px}.mascot-emoji{font-size:70px}.answers{grid-template-columns:1fr}.result-grid{grid-template-columns:1fr 1fr}.result-stat:last-child{grid-column:1/-1}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="brand-icon">🩺</div><div>MISI WIRA SIHAT<br><span style="font-size:11px;color:#6b7b91;font-weight:700">KELAB DOKTOR MUDA</span></div></div>
+    <div class="pill">🎯 TAHAP 2 · TAHUN 4–6</div>
+  </header>
+
+  <main id="home">
+    <section class="panel hero">
+      <div>
+        <span class="eyebrow">CABARAN 5 STESEN · 20 SOALAN</span>
+        <h1>Jom Jadi<br><span>Wira Sihat!</span></h1>
+        <p class="lead">Sedia untuk mengembara, menyelesaikan misi kesihatan dan mengumpul bintang? Buktikan bahawa kamu seorang Wira Sihat!</p>
+        <div class="name-row">
+          <input id="playerName" type="text" maxlength="24" placeholder="Masukkan nama kamu" aria-label="Nama pemain">
+          <button class="btn primary" id="startBtn">Mula Misi 🚀</button>
+        </div>
+        <div class="small-note">Permainan pendidikan · Bahasa Melayu · 20 soalan</div>
+      </div>
+      <div class="hero-art" aria-label="Maskot doktor muda kartun">
+        <div class="orbit">
+          <div class="doctor">🧑‍⚕️</div>
+          <div class="float f1">💧 Minum air!</div><div class="float f2">⭐ Sihat!</div><div class="float f3">🥦 Makan bijak!</div>
+        </div>
+      </div>
+    </section>
+    <section class="panel how">
+      <h2 class="section-title">📘 Cara bermain</h2>
+      <div class="steps">
+        <div class="step"><div class="step-icon">🧭</div><div><b>1. Teroka 5 stesen</b><span class="small-note">Setiap stesen mempunyai 4 soalan kesihatan.</span></div></div>
+        <div class="step"><div class="step-icon">💡</div><div><b>2. Pilih jawapan</b><span class="small-note">Baca soalan dan pilih satu jawapan yang paling tepat.</span></div></div>
+        <div class="step"><div class="step-icon">🏆</div><div><b>3. Kumpul mata</b><span class="small-note">Jawapan betul mendapat 10 mata. Cuba capai markah tertinggi!</span></div></div>
+      </div>
+    </section>
+  </main>
+
+  <section id="game" class="panel game-panel hidden" aria-live="polite">
+    <div class="game-top">
+      <div><div class="mission-label" id="stationTitle">STESEN 1</div><h2 style="margin:5px 0 0;font-size:24px" id="stationName">Jom Bersih, Jom Sihat</h2></div>
+      <div class="score-chip">⭐ Markah: <span id="score">0</span></div>
+    </div>
+    <div class="progress-wrap" role="progressbar" aria-label="Kemajuan permainan" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0" id="progressWrap"><div class="progress" id="progress"></div></div>
+    <div class="station-row" id="stationRow"></div>
+    <div class="question-layout">
+      <div class="mascot-card"><div class="mascot-emoji" id="questionMascot">🧑‍⚕️</div></div>
+      <div>
+        <div class="question-count" id="questionCount">SOALAN 1 DARIPADA 20</div>
+        <h3 class="question" id="questionText">Soalan akan dipaparkan di sini.</h3>
+        <div class="answers" id="answers"></div>
+        <div id="feedback" class="feedback hidden" role="status"></div>
+      </div>
+    </div>
+    <div class="game-footer">
+      <div class="small-note">Baca dengan teliti. Setiap jawapan ialah peluang untuk belajar!</div>
+      <button class="btn primary hidden" id="nextBtn">Soalan seterusnya →</button>
+    </div>
+  </section>
+
+  <section id="result" class="panel result hidden">
+    <div class="trophy" id="resultTrophy">🏆</div>
+    <span class="eyebrow">MISI SELESAI!</span>
+    <h2 id="resultTitle">Tahniah, Wira Sihat!</h2>
+    <p class="result-sub" id="resultMessage"></p>
+    <div class="score-big"><span id="finalScore">0</span><span style="font-size:24px;color:#75849a;letter-spacing:0"> / 200</span></div>
+    <div class="stars" id="resultStars">⭐⭐⭐</div>
+    <div class="result-grid">
+      <div class="result-stat"><strong id="correctCount">0</strong><span>JAWAPAN BETUL</span></div>
+      <div class="result-stat"><strong id="wrongCount">0</strong><span>PERLU DIULANG KAJI</span></div>
+      <div class="result-stat"><strong id="percentScore">0%</strong><span>PENCAPAIAN</span></div>
+    </div>
+    <div class="certificate">
+      <div style="font-size:12px;font-weight:900;letter-spacing:1px;color:#6c7f98">ANUGERAH DIGITAL</div>
+      <h3 style="margin:8px 0;font-size:25px" id="awardName">WIRA SIHAT</h3>
+      <p style="margin:0;color:#61728a">Dianugerahkan kepada</p>
+      <strong style="display:block;font-size:22px;margin:7px 0" id="awardPlayer">Wira Sihat</strong>
+      <p style="margin:0;color:#61728a">kerana telah menamatkan Misi Wira Sihat.</p>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px">
+      <button class="btn primary" id="restartBtn">🔄 Main Semula</button>
+      <button class="btn secondary" id="homeBtn">⌂ Kembali ke Laman Utama</button>
+      <button class="btn yellow" id="printBtn">🖨️ Cetak Keputusan</button>
+    </div>
+    <p class="small-note" style="margin-top:18px">Keputusan dipaparkan pada peranti ini sahaja dan tidak dihantar ke mana-mana pangkalan data.</p>
+  </section>
+  <footer class="footer">MISI WIRA SIHAT · Bahan pembelajaran kesihatan sekolah rendah<br>Ingat: amalkan gaya hidup sihat setiap hari!</footer>
+</div>
+<script>
+const missions = [
+ {name:"Jom Bersih, Jom Sihat",icon:"🧼",questions:[
+  {q:"Bilakah kita perlu mencuci tangan dengan sabun?",a:["Selepas menggunakan tandas sahaja","Sebelum makan dan selepas menggunakan tandas","Hanya apabila tangan kelihatan kotor","Sekali sehari sudah mencukupi"],c:1,e:"Basuh tangan dengan sabun sebelum makan, selepas ke tandas dan apabila tangan kotor."},
+  {q:"Berapakah langkah mencuci tangan yang diajar dalam amalan 7 langkah?",a:["3 langkah","5 langkah","7 langkah","10 langkah"],c:2,e:"Amalan 7 langkah membantu membersihkan seluruh permukaan tangan dengan teliti."},
+  {q:"Apakah cara yang betul ketika batuk atau bersin?",a:["Menutup mulut dengan tapak tangan sahaja","Menghalakan muka kepada rakan","Menutup hidung dan mulut dengan tisu atau siku","Tidak perlu menutup mulut"],c:2,e:"Gunakan tisu atau bahagian siku, kemudian buang tisu dan bersihkan tangan."},
+  {q:"Mengapakah kuku perlu dipotong pendek dan bersih?",a:["Supaya kuman dan kotoran kurang terkumpul","Supaya kita tidak perlu mandi","Supaya tangan tidak perlu dicuci","Supaya kita boleh makan tanpa pinggan"],c:0,e:"Kuku yang pendek dan bersih mengurangkan pengumpulan kotoran dan kuman."}
+ ]},
+ {name:"Makanan Rosak atau Baik",icon:"🍎",questions:[
+  {q:"Apakah tanda makanan mungkin sudah rosak?",a:["Warna dan baunya seperti biasa","Berbau busuk atau berkulat","Disimpan dalam bekas bersih","Dimasak dengan sempurna"],c:1,e:"Bau pelik, kulat atau perubahan rupa boleh menandakan makanan rosak. Jangan merasa untuk mengujinya."},
+  {q:"Apakah yang perlu dilakukan jika susu berbau masam sebelum tarikh luput?",a:["Minum dengan cepat","Campur dengan air","Jangan minum dan maklumkan kepada orang dewasa","Panaskan lalu minum tanpa bertanya"],c:2,e:"Makanan boleh rosak walaupun belum melepasi tarikh luput. Jangan minum dan beritahu orang dewasa."},
+  {q:"Mengapakah makanan perlu ditutup apabila tidak dimakan?",a:["Supaya makanan cepat sejuk","Supaya lalat dan kotoran tidak mencemarinya","Supaya makanan bertambah banyak","Supaya warnanya berubah"],c:1,e:"Makanan yang ditutup terlindung daripada lalat, habuk dan pencemaran."},
+  {q:"Apakah tindakan paling selamat terhadap makanan dalam tin yang kembung atau bocor?",a:["Makan sedikit sahaja","Bilas tin dan makan","Jangan gunakan; beritahu orang dewasa","Masukkan ke dalam peti sejuk lalu makan"],c:2,e:"Tin yang kembung, bocor atau rosak boleh menandakan makanan tidak selamat. Jangan makan."}
+ ]},
+ {name:"Makan Sihat, Makan Selamat",icon:"🥗",questions:[
+  {q:"Apakah panduan pemakanan yang membantu kita mengambil makanan secara seimbang?",a:["Pinggan Sihat Malaysia: Suku-Suku-Separuh","Makan nasi sahaja","Makan makanan manis setiap hari","Tidak perlu mengambil sayur"],c:0,e:"Suku-Suku-Separuh menggalakkan suku pinggan bijirin, suku protein dan separuh sayur serta buah."},
+  {q:"Antara berikut, yang manakah pilihan minuman harian yang lebih baik?",a:["Minuman berkarbonat manis","Air kosong","Minuman tenaga","Sirap yang sangat manis"],c:1,e:"Air kosong membantu tubuh kekal terhidrat tanpa gula tambahan."},
+  {q:"Mengapakah kita perlu makan buah-buahan dan sayur-sayuran?",a:["Untuk mendapatkan vitamin, mineral dan serat","Supaya tidak perlu minum air","Untuk menggantikan semua makanan lain","Supaya boleh tidur sepanjang hari"],c:0,e:"Buah dan sayur membekalkan vitamin, mineral dan serat yang penting untuk kesihatan."},
+  {q:"Apakah amalan selamat sebelum menyediakan atau makan makanan?",a:["Menggunakan tangan yang kotor","Membiarkan makanan terdedah","Mencuci tangan dengan sabun","Berkongsi sudu yang belum dibasuh"],c:2,e:"Tangan yang bersih membantu mengurangkan pemindahan kuman kepada makanan."}
+ ]},
+ {name:"Aktifkan Badan",icon:"🏃",questions:[
+  {q:"Apakah faedah melakukan aktiviti fizikal secara berkala?",a:["Membuat badan sentiasa lemah","Membantu menguatkan otot dan jantung","Menggantikan keperluan tidur","Menyebabkan kita tidak perlu makan"],c:1,e:"Aktiviti fizikal membantu kecergasan jantung, otot, tulang dan kesejahteraan."},
+  {q:"Apakah tindakan yang sesuai sebelum melakukan aktiviti sukan?",a:["Terus berlari sepantas mungkin","Melakukan pemanasan badan","Tidak minum air sepanjang hari","Memakai kasut yang tidak sesuai"],c:1,e:"Pemanasan badan menyediakan otot dan sendi sebelum aktiviti."},
+  {q:"Ketika bersenam di bawah cuaca panas, apakah yang patut dilakukan?",a:["Minum air dan berehat apabila perlu","Memakai pakaian tebal berlapis-lapis","Mengabaikan rasa pening","Tidak berhenti walaupun berasa tidak sihat"],c:0,e:"Minum air, berehat di tempat teduh dan berhenti jika berasa pening atau tidak sihat."},
+  {q:"Jika rakan terjatuh dan mengalami kecederaan ketika bersukan, apakah tindakan terbaik?",a:["Ketawakan rakan","Suruh rakan terus bermain","Maklumkan guru atau orang dewasa dengan segera","Tinggalkan rakan seorang diri"],c:2,e:"Beritahu guru dengan segera supaya rakan mendapat bantuan yang sesuai."}
+ ]},
+ {name:"Elakkan Keracunan Makanan",icon:"🛡️",questions:[
+  {q:"Apakah cara terbaik mengelakkan pencemaran silang ketika menyediakan makanan?",a:["Menggunakan papan pemotong yang sama untuk ayam mentah dan salad tanpa dibasuh","Mengasingkan makanan mentah daripada makanan yang sudah dimasak","Meletakkan daging mentah di atas buah","Menggunakan pisau kotor untuk semua makanan"],c:1,e:"Asingkan makanan mentah daripada makanan yang telah dimasak atau sedia dimakan."},
+  {q:"Mengapakah ayam dan daging perlu dimasak dengan sempurna?",a:["Untuk memastikan bahagian dalamnya selamat dimakan","Supaya warnanya sentiasa merah","Supaya tidak perlu mencuci tangan","Supaya makanan boleh disimpan di luar sepanjang hari"],c:0,e:"Memasak dengan sempurna membantu membunuh kuman berbahaya dalam makanan."},
+  {q:"Apakah yang patut dilakukan jika mengalami muntah atau cirit-birit selepas makan?",a:["Sembunyikan daripada semua orang","Minum minuman tenaga sahaja","Beritahu orang dewasa dan dapatkan nasihat kesihatan","Terus makan makanan yang sama"],c:2,e:"Maklumkan kepada ibu bapa, penjaga atau guru. Dapatkan rawatan jika gejala teruk atau berterusan."},
+  {q:"Di manakah makanan mudah rosak patut disimpan jika tidak dimakan segera?",a:["Di bawah cahaya matahari","Di dalam kereta yang panas","Di tempat terbuka berhampiran tong sampah","Di dalam peti sejuk dengan cara penyimpanan yang betul"],c:3,e:"Simpan makanan mudah rosak dalam peti sejuk dengan segera dan elakkan membiarkannya lama pada suhu bilik."}
+ ]}
+];
+const allQuestions = missions.flatMap((m,mi)=>m.questions.map((q,qi)=>({...q,station:mi,stationQuestion:qi})));
+let player="",index=0,score=0,correct=0,answered=false;
+const $=id=>document.getElementById(id);
+function show(id){$(id).classList.remove("hidden")}
+function hide(id){$(id).classList.add("hidden")}
+function startGame(){
+ player=$("playerName").value.trim()||"Wira Sihat";index=0;score=0;correct=0;answered=false;
+ $("score").textContent="0";hide("home");hide("result");show("game");renderQuestion();
+}
+function renderStations(){
+ const active=Math.floor(index/4);
+ $("stationRow").innerHTML=missions.map((m,i)=>`<div class="station ${i<active?"done":i===active?"active":""}">${i<active?"✓":m.icon} Stesen ${i+1}</div>`).join("");
+}
+function renderQuestion(){
+ answered=false;hide("feedback");hide("nextBtn");
+ const item=allQuestions[index],mission=missions[item.station];
+ $("stationTitle").textContent=`STESEN ${item.station+1} · MISI ${item.station+1} DARIPADA 5`;
+ $("stationName").textContent=mission.name;$("questionMascot").textContent=mission.icon;
+ $("questionCount").textContent=`SOALAN ${index+1} DARIPADA ${allQuestions.length}`;
+ $("questionText").textContent=item.q;$("progress").style.width=`${index/allQuestions.length*100}%`;
+ $("progressWrap").setAttribute("aria-valuenow",index);renderStations();
+ $("answers").innerHTML="";
+ item.a.forEach((answer,i)=>{
+  const button=document.createElement("button");button.className="answer";
+  const letter=document.createElement("span");letter.className="letter";letter.textContent=String.fromCharCode(65+i);
+  const label=document.createElement("span");label.textContent=answer;
+  button.append(letter,label);button.addEventListener("click",()=>chooseAnswer(i));$("answers").append(button);
+ });
+}
+function chooseAnswer(choice){
+ if(answered)return;answered=true;
+ const item=allQuestions[index],buttons=[...$("answers").querySelectorAll("button")];
+ buttons.forEach((b,i)=>{b.disabled=true;if(i===item.c)b.classList.add("correct");if(i===choice&&i!==item.c)b.classList.add("wrong")});
+ const feedback=$("feedback");
+ if(choice===item.c){score+=10;correct++;feedback.className="feedback good";feedback.textContent="Betul! +10 mata. "+item.e}
+ else{feedback.className="feedback bad";feedback.textContent="Belum tepat. "+item.e}
+ $("score").textContent=score;show("feedback");show("nextBtn");
+ $("nextBtn").textContent=index===allQuestions.length-1?"Lihat keputusan 🏆":"Soalan seterusnya →";
+}
+function nextQuestion(){if(!answered)return;index++;if(index>=allQuestions.length){finishGame();return}renderQuestion()}
+function finishGame(){
+ hide("game");show("result");$("progress").style.width="100%";
+ const percent=Math.round(correct/allQuestions.length*100);
+ $("finalScore").textContent=score;$("correctCount").textContent=correct;
+ $("wrongCount").textContent=allQuestions.length-correct;$("percentScore").textContent=percent+"%";
+ $("awardPlayer").textContent=player;
+ let title,message,trophy,stars,award;
+ if(percent>=90){title=`Hebat, ${player}!`;message="Kamu benar-benar Wira Sihat! Pengetahuan kesihatan kamu sangat mantap.";trophy="🏆";stars="⭐⭐⭐⭐⭐";award="WIRA SIHAT CEMERLANG"}
+ else if(percent>=70){title=`Syabas, ${player}!`;message="Usaha yang baik! Kamu sudah menguasai banyak amalan kesihatan. Teruskan belajar.";trophy="🥇";stars="⭐⭐⭐⭐";award="WIRA SIHAT"}
+ else if(percent>=50){title=`Bagus, ${player}!`;message="Kamu sedang menuju ke arah hidup sihat. Cuba lagi untuk mengukuhkan pengetahuan.";trophy="🥈";stars="⭐⭐⭐";award="PEJUANG SIHAT"}
+ else{title=`Terus mencuba, ${player}!`;message="Setiap percubaan membantu kamu belajar. Baca maklum balas dan cuba sekali lagi.";trophy="🌱";stars="⭐⭐";award="CALON WIRA SIHAT"}
+ $("resultTitle").textContent=title;$("resultMessage").textContent=message;
+ $("resultTrophy").textContent=trophy;$("resultStars").textContent=stars;$("awardName").textContent=award;
+}
+$("startBtn").addEventListener("click",startGame);
+$("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")startGame()});
+$("nextBtn").addEventListener("click",nextQuestion);
+$("restartBtn").addEventListener("click",startGame);
+$("homeBtn").addEventListener("click",()=>{hide("result");hide("game");show("home");window.scrollTo({top:0,behavior:"smooth"})});
+$("printBtn").addEventListener("click",()=>window.print());
+</script>
+<style>
+@media print{
+ body{background:white}.topbar,#home,#game,.footer,#restartBtn,#homeBtn,#printBtn{display:none!important}
+ #result{display:block!important;box-shadow:none;border:1px solid #ddd;margin:0;padding:20px}
+ .certificate{break-inside:avoid}
+}
+</style>
+</body>
+</html>
