@@ -1,0 +1,13 @@
+
+{
+  "name": "Misi Wira Sihat",
+  "short_name": "Wira Sihat",
+  "description": "Permainan kesihatan interaktif Kelab Doktor Muda untuk murid sekolah rendah.",
+  "lang": "ms",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#edf8ff",
+  "theme_color": "#3185fc"
+}
